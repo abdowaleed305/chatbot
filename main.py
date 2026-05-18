@@ -16,12 +16,10 @@ for msg in st.session_state.messages:
 
 prompt = st.chat_input("Enter any question:")
 
-# الأسماء الصحيحة للموديلات المتوافقة مع المكتبة الجديدة بدون 404
+# الموديلات الرسمية والمستقرة تماماً في المكتبة الجديدة
 MODELS_LIST = [
     'gemini-2.5-flash',
-    'gemini-2.5-pro',
-    'gemini-2.0-flash',
-    'gemini-2.0-flash-exp'
+    'gemini-2.5-pro'
 ]
 
 if prompt:
@@ -43,8 +41,8 @@ if prompt:
             reply = response.text
             break
         except Exception as e:
-            # لو الخطأ بسبب الليميت (429) أو الموديل مش مدعوم في خطتك (403)، انقل على اللي بعده
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e) or "403" in str(e):
+            # لو الحساب خلص الـ 20 طلب بتوع الـ flash، ينقل على الـ pro
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
                 continue
             else:
                 reply = f"Error: {str(e)}"
