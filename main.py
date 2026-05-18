@@ -1,7 +1,7 @@
 import streamlit as st
 from google import genai
-
-client = genai.Client(api_key="AIzaSyDcihNIgmUZPlgJN4M_fXbCVUC6leRVX6E")
+API_KEY = st.secrets["AIzaSyB2C9AkFZAy0W3WH2fPy-vVhuJNiB1Ell0"]
+client = genai.Client(api_key=API_KEY)
 
 st.set_page_config(page_title="ChatBot_App")
 
